@@ -6,7 +6,6 @@ const getData = async (id) => {
     const sprite = data.sprites.front_default;
     const type = data.types[0].type.name;
     const abilities = data.abilities[0].ability.name;
-    console.log(data.name);
     const pokemonHTML = `<div class="pokemonClass">
     <h2>${pokemon}</h2>
     <img src="${sprite}" />
@@ -52,10 +51,29 @@ const getData = async (id) => {
   }
 };
 
-const correctOrder = async () => {
+const searchFilter = (() => {
+  const input = document.querySelector("#search-filter");
+
+  const filterFunction = () => {
+    const div = document.querySelectorAll(".pokemonClass");
+    const filterValue = input.value.toUpperCase();
+
+    div.forEach((pokemon) => {
+      const h2 = pokemon.getElementsByTagName("h2")[0];
+
+      if (h2.innerText.toUpperCase().indexOf(filterValue) > -1) {
+        pokemon.style.display = "";
+      } else {
+        pokemon.style.display = "none";
+      }
+    });
+  };
+
+  input.addEventListener("keyup", filterFunction);
+})();
+
+const correctOrder = (async () => {
   for (let id = 1; id <= 151; id++) {
     await getData(id);
   }
-};
-
-correctOrder();
+})();

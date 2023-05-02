@@ -10,6 +10,7 @@
   flex-direction: column;
   align-items: center;
   gap: 50px;
+  height: 100vh;
 }
 
 .title {
@@ -20,6 +21,7 @@
 }
 
 .poke-container {
+  background-color: #cc322a;
   display: flex;
   gap: 30px;
   flex-wrap: wrap;
