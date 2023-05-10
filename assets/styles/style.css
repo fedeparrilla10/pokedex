@@ -1,0 +1,81 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Roboto", sans-serif;
+  color: #dedede;
+}
+
+body {
+  background-color: #151515;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 60px;
+}
+.container .titles-section {
+  margin-top: 25px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+.container .titles-section .main-title {
+  font-size: 48px;
+  letter-spacing: 5px;
+  font-family: "Pokemon Solid", sans-serif;
+  color: #FFCC00;
+  text-shadow: 5px 5px #0075BE;
+}
+.container .titles-section .filter-pokemon {
+  width: 200px;
+  height: 20px;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  color: #151515;
+}
+.container .poke-container {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 50px;
+  width: 90%;
+  margin-bottom: 5%;
+}
+.container .poke-container .eachPokemon {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  border: 1px solid #2f2f2f;
+  border-radius: 15%;
+  height: 300px;
+  width: 200px;
+}
+.container .poke-container .eachPokemon .poke-id {
+  font-size: 18px;
+}
+.container .poke-container .eachPokemon .poke-name {
+  font-size: 24px;
+  letter-spacing: 1.5px;
+  text-transform: capitalize;
+  font-family: "Fira Code", monospace;
+}
+.container .poke-container .eachPokemon .poke-img {
+  -o-object-fit: none;
+     object-fit: none;
+}
+.container .poke-container .eachPokemon .poke-type {
+  font-size: 18px;
+  text-transform: capitalize;
+}
+.container .poke-container .eachPokemon .poke-ability {
+  font-size: 15px;
+  text-transform: capitalize;
+}/*# sourceMappingURL=style.css.map */
