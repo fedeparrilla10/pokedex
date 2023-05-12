@@ -38,6 +38,12 @@ body {
   border-radius: 5px;
   color: #151515;
 }
+.container .pokemon-team {
+  display: none;
+}
+.container .pokemon-team-active {
+  display: block;
+}
 .container .poke-container {
   display: flex;
   flex-wrap: wrap;
@@ -57,6 +63,14 @@ body {
   border-radius: 15%;
   height: 300px;
   width: 200px;
+}
+.container .poke-container .eachPokemon .fa-heart {
+  cursor: pointer;
+  margin-bottom: 10px;
+  color: #dedede;
+}
+.container .poke-container .eachPokemon .fa-heart-active {
+  color: #FB1B1B;
 }
 .container .poke-container .eachPokemon .poke-id {
   font-size: 18px;
