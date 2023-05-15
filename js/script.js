@@ -1,5 +1,5 @@
 // Importamos el objeto pokeTypes para usarlo dentro de este documento sin ocupar demasiado espacio en el mismo.
-import { pokeTypes } from "./types.js";
+import { pokeTypes } from './types.js';
 
 // Fetcheamos la URL que contiene los primeros 151 Pokémon. Los resultados nos muestran el nombre de cada uno de ellos + otra propiedad que contiene una segunda URL con más datos de cada uno.
 const getData = async () => {
@@ -8,7 +8,7 @@ const getData = async () => {
     const data = await res.json();
     return data.results;
   } catch (error) {
-    console.log("Error");
+    console.log('Error');
   }
 };
 
@@ -34,7 +34,7 @@ const getMainData = async (detailsArray) => {
     );
     return allData;
   } catch (error) {
-    console.log("Error!");
+    console.log('Error!');
   }
 };
 
@@ -54,71 +54,71 @@ const cleanPokeData = (finalArray) => {
 
 // Empezamos a renderizarlo en el HTML. Hacemos un destructuring para facilitar las cosas y tener el código más limpio.
 const renderPokemon = (renderArray) => {
-  const pokeContainer = document.querySelector(".poke-container");
+  const pokeContainer = document.querySelector('.poke-container');
 
   renderArray.forEach((pokemon) => {
-    const eachPokemonContainer = document.createElement("div");
-    const heartMark = document.createElement("i");
-    const pokeId = document.createElement("h6");
-    const pokeName = document.createElement("h3");
-    const pokeImg = document.createElement("img");
-    const pokeType = document.createElement("p");
-    const pokeAbility = document.createElement("p");
+    const eachPokemonContainer = document.createElement('div');
+    const heartMark = document.createElement('i');
+    const pokeId = document.createElement('h6');
+    const pokeName = document.createElement('h3');
+    const pokeImg = document.createElement('img');
+    const pokeType = document.createElement('p');
+    const pokeAbility = document.createElement('p');
     const { id, name, type, img, ability } = pokemon;
 
     pokeContainer.appendChild(eachPokemonContainer);
-    eachPokemonContainer.classList.add("eachPokemon");
+    eachPokemonContainer.classList.add('eachPokemon');
 
     eachPokemonContainer.appendChild(heartMark);
-    heartMark.classList.add("fa-solid");
-    heartMark.classList.add("fa-heart");
+    heartMark.classList.add('fa-solid');
+    heartMark.classList.add('fa-heart');
 
     eachPokemonContainer.appendChild(pokeId);
-    pokeId.classList.add("poke-id");
+    pokeId.classList.add('poke-id');
     pokeId.innerText = `# ${id}`;
 
     eachPokemonContainer.appendChild(pokeName);
-    pokeName.classList.add("poke-name");
+    pokeName.classList.add('poke-name');
     pokeName.innerText = `${name}`;
 
     eachPokemonContainer.appendChild(pokeImg);
-    pokeImg.classList.add("poke-img");
+    pokeImg.classList.add('poke-img');
     pokeImg.src = `${img}`;
 
     eachPokemonContainer.appendChild(pokeType);
-    pokeType.classList.add("poke-type");
+    pokeType.classList.add('poke-type');
     pokeType.innerText = `${type}`;
 
     eachPokemonContainer.appendChild(pokeAbility);
-    pokeAbility.classList.add("poke-ability");
+    pokeAbility.classList.add('poke-ability');
     pokeAbility.innerText = `${ability}`;
   });
 };
 
 // Creamos un filtro que permita buscar los Pokémon por nombre, filtrando aquellos que no coincidan con el input que ponga el usuario.
 const filterSearch = () => {
-  const filterInput = document.querySelector("#filter-pokemon");
+  const filterInput = document.querySelector('#filter-pokemon');
 
   const filterPokemon = () => {
-    const eachPokemonContainer = document.querySelectorAll(".eachPokemon");
+    const eachPokemonContainer = document.querySelectorAll('.eachPokemon');
     const inputValue = filterInput.value.toLowerCase();
 
     eachPokemonContainer.forEach((eachContainer) => {
-      const pokeName = eachContainer.querySelector(".poke-name");
+      const pokeName = eachContainer.querySelector('.poke-name');
 
       if (pokeName.innerText.toLowerCase().indexOf(inputValue) > -1) {
-        eachContainer.style.display = "";
+        eachContainer.style.display = '';
       } else {
-        eachContainer.style.display = "none";
+        eachContainer.style.display = 'none';
       }
     });
   };
-  filterInput.addEventListener("keyup", filterPokemon);
+  filterInput.addEventListener('keyup', filterPokemon);
 };
 
 // Creamos un pequeño detalle que coloree una sombra en el nombre de los Pokémon dependiendo de su tipo.
 const coloringEachPokemon = () => {
-  const pokeType = document.querySelectorAll(".poke-type");
+  const pokeType = document.querySelectorAll('.poke-type');
 
   pokeType.forEach((eachType) => {
     const typeName = eachType.textContent.toLowerCase();
@@ -150,51 +150,51 @@ const showSection = (array, classes, classString) => {
 
 // Renderizar el contenido del <section> en base al array favouriteArray.
 const renderFavouriteContent = (array, section) => {
-  section.innerHTML = "";
+  section.innerHTML = '';
 
   array.forEach((item) => {
-    const h3 = document.createElement("h3");
-    const article = document.createElement("article");
-    const img = document.createElement("img");
+    const h3 = document.createElement('h3');
+    const article = document.createElement('article');
+    const img = document.createElement('img');
 
     section.appendChild(article);
 
-    article.classList.add("poke-favourite");
+    article.classList.add('poke-favourite');
 
     article.appendChild(img);
-    img.src = "./assets/img/pokeball.png";
-    img.classList.add("fav-pokeball");
+    img.src = './assets/img/pokeball.png';
+    img.classList.add('fav-pokeball');
 
     article.appendChild(h3);
     h3.innerText = item;
-    h3.classList.add("fav-pokename");
+    h3.classList.add('fav-pokename');
   });
 };
 
 // Función principal para la lista de favoritos.
 const choosePokemonTeam = () => {
-  const allHearts = document.querySelectorAll(".fa-heart");
-  const pokemonTeamSection = document.querySelector(".pokemon-team");
+  const allHearts = document.querySelectorAll('.fa-heart');
+  const pokemonTeamSection = document.querySelector('.pokemon-team');
   const favouriteArray = [];
 
   // Función que maneja el evento cada vez que clickeemos en el corazón.
   const markAsFavourite = (ev) => {
     const pokeFav = ev.target.parentNode;
-    const pokeName = pokeFav.querySelector(".poke-name").innerText;
+    const pokeName = pokeFav.querySelector('.poke-name').innerText;
 
     // Cambia el color del corazón
     const pokeHeartFav = ev.target.classList;
-    const activeFav = pokeHeartFav.toggle("fa-heart-active"); // Pulsando en el elemento, activamos/desactivamos una clase cual interruptor.
+    const activeFav = pokeHeartFav.toggle('fa-heart-active'); // Pulsando en el elemento, activamos/desactivamos una clase cual interruptor.
 
     // Ejecutamos las funciones con los argumentos correspondientes.
     pushPokemon(favouriteArray, pokeName, activeFav);
     splicePokemon(favouriteArray, pokeName, activeFav);
-    showSection(favouriteArray, pokemonTeamSection, "pokemon-team-active");
+    showSection(favouriteArray, pokemonTeamSection, 'pokemon-team-active');
     renderFavouriteContent(favouriteArray, pokemonTeamSection);
   };
 
   allHearts.forEach((heart) => {
-    heart.addEventListener("click", markAsFavourite);
+    heart.addEventListener('click', markAsFavourite);
   });
 };
 
@@ -227,3 +227,5 @@ const init = async () => {
 };
 
 init();
+
+something - algo;
