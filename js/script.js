@@ -227,5 +227,3 @@ const init = async () => {
 };
 
 init();
-
-something - algo;

@@ -73,9 +73,6 @@ body {
         border-radius: 30px;
         padding: 15px;
 
-
-
-
         .poke-favourite {
             display: flex;
             flex-direction: row;
@@ -88,7 +85,6 @@ body {
             .fav-pokename {
                 font-family: $monospace-font;
                 font-size: 18px;
-                color: $poke-color-first;
             }
         }
     }
@@ -112,6 +108,11 @@ body {
             border-radius: 15%;
             height: 300px;
             width: 200px;
+            transition: all .2s ease-in-out; 
+
+            &:hover {
+                transform: scale(1.1); 
+            }
 
             .fa-heart {
                 cursor: pointer;
