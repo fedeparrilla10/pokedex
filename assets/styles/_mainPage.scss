@@ -1,0 +1,36 @@
+body {
+    background-color: $bg-color;
+
+    .container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 60px;
+
+        .titles-section {
+            margin-top: 25px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+
+            .main-title {
+                font-size: 48px;
+                letter-spacing: 5px;
+                font-family: $poke-font;
+                color: $poke-color-first;
+                text-shadow: 5px 5px $poke-color-second;
+            }
+
+            .filter-pokemon {
+                width: 200px;
+                height: 20px;
+                padding: 10px;
+                border: none;
+                border-radius: 5px;
+                color: $bg-color;
+                font-family: $monospace-font;
+            }
+        }
+    }
+}

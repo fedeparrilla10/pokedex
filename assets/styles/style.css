@@ -9,28 +9,27 @@
 body {
   background-color: #151515;
 }
-
-.container {
+body .container {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 60px;
 }
-.container .titles-section {
+body .container .titles-section {
   margin-top: 25px;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 20px;
 }
-.container .titles-section .main-title {
+body .container .titles-section .main-title {
   font-size: 48px;
   letter-spacing: 5px;
   font-family: "Pokemon Solid", sans-serif;
   color: #FFCC00;
   text-shadow: 5px 5px #0075BE;
 }
-.container .titles-section .filter-pokemon {
+body .container .titles-section .filter-pokemon {
   width: 200px;
   height: 20px;
   padding: 10px;
@@ -39,10 +38,62 @@ body {
   color: #151515;
   font-family: "Fira Code", monospace;
 }
-.container .pokemon-team {
+
+.poke-container {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 50px;
+  width: 90%;
+  margin-bottom: 5%;
+}
+.poke-container .eachPokemon {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  border: 1px solid #2f2f2f;
+  border-radius: 15%;
+  height: 300px;
+  width: 200px;
+}
+.poke-container .eachPokemon .fa-heart {
+  cursor: pointer;
+  margin-bottom: 10px;
+  color: #dedede;
+}
+.poke-container .eachPokemon .fa-heart-active {
+  color: #FB1B1B;
+}
+.poke-container .eachPokemon .poke-id {
+  font-size: 18px;
+}
+.poke-container .eachPokemon .poke-name {
+  font-size: 24px;
+  letter-spacing: 1.5px;
+  text-transform: capitalize;
+  font-family: "Fira Code", monospace;
+}
+.poke-container .eachPokemon .poke-img {
+  -o-object-fit: none;
+     object-fit: none;
+}
+.poke-container .eachPokemon .poke-type {
+  font-size: 18px;
+  text-transform: capitalize;
+}
+.poke-container .eachPokemon .poke-ability {
+  font-size: 15px;
+  text-transform: capitalize;
+}
+
+.pokemon-team {
   display: none;
 }
-.container .pokemon-team-active {
+
+.pokemon-team-active {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -55,65 +106,16 @@ body {
   border-radius: 30px;
   padding: 15px;
 }
-.container .pokemon-team-active .poke-favourite {
+.pokemon-team-active .poke-favourite {
   display: flex;
   flex-direction: row;
   gap: 15px;
 }
-.container .pokemon-team-active .poke-favourite .fav-pokeball {
+.pokemon-team-active .poke-favourite .fav-pokeball {
   -o-object-fit: none;
      object-fit: none;
 }
-.container .pokemon-team-active .poke-favourite .fav-pokename {
+.pokemon-team-active .poke-favourite .fav-pokename {
   font-family: "Fira Code", monospace;
   font-size: 18px;
-}
-.container .poke-container {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
-  gap: 50px;
-  width: 90%;
-  margin-bottom: 5%;
-}
-.container .poke-container .eachPokemon {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  border: 1px solid #2f2f2f;
-  border-radius: 15%;
-  height: 300px;
-  width: 200px;
-}
-.container .poke-container .eachPokemon .fa-heart {
-  cursor: pointer;
-  margin-bottom: 10px;
-  color: #dedede;
-}
-.container .poke-container .eachPokemon .fa-heart-active {
-  color: #FB1B1B;
-}
-.container .poke-container .eachPokemon .poke-id {
-  font-size: 18px;
-}
-.container .poke-container .eachPokemon .poke-name {
-  font-size: 24px;
-  letter-spacing: 1.5px;
-  text-transform: capitalize;
-  font-family: "Fira Code", monospace;
-}
-.container .poke-container .eachPokemon .poke-img {
-  -o-object-fit: none;
-     object-fit: none;
-}
-.container .poke-container .eachPokemon .poke-type {
-  font-size: 18px;
-  text-transform: capitalize;
-}
-.container .poke-container .eachPokemon .poke-ability {
-  font-size: 15px;
-  text-transform: capitalize;
 }/*# sourceMappingURL=style.css.map */
