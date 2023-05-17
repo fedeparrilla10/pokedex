@@ -1,4 +1,4 @@
-// Importamos el objeto pokeTypes para usarlo dentro de este documento sin ocupar demasiado espacio en el mismo.
+// Modules
 import { pokeTypes } from './types.js';
 import {
   pushPokemon,
@@ -7,7 +7,7 @@ import {
   renderFavouriteContent,
 } from './defaultFunctions.js';
 
-// Fetcheamos la URL que contiene los primeros 151 Pokémon. Los resultados nos muestran el nombre de cada uno de ellos + otra propiedad que contiene una segunda URL con más datos de cada uno.
+// First fetch.
 const getData = async () => {
   try {
     const res = await fetch(`https://pokeapi.co/api/v2/pokemon?limit=151`);
@@ -18,7 +18,7 @@ const getData = async () => {
   }
 };
 
-// Mapeamos el array que nos devuelve la función getData para obtener una nueva estructura de datos que contenga los nombres de los Pokémon.
+// Getting Pokémon names.
 const mapEachPokemon = (generalArray) => {
   const newArray = generalArray.map((pokeName) => {
     return pokeName.name;
@@ -26,7 +26,7 @@ const mapEachPokemon = (generalArray) => {
   return newArray;
 };
 
-// Iteramos el array de los nombres para fetchear, con esos 151 elementos metidos como argumento en eachElement, consiguiendo de esta manera un tercer array. En este caso, vamos a tener todos los datos de cada uno de los Pokémon.
+// Main data for each Pokémon.
 const getMainData = async (detailsArray) => {
   try {
     const allData = await Promise.all(
@@ -44,7 +44,7 @@ const getMainData = async (detailsArray) => {
   }
 };
 
-// Pasamos en limpio el array (ya que tenía muchísimas cosas que no nos interesaban). Rescatamos: id, nombre, tipo principal, imagen y habilidad.
+// Final array.
 const cleanPokeData = (finalArray) => {
   const definitiveList = finalArray.map((poke) => {
     return {
@@ -58,7 +58,7 @@ const cleanPokeData = (finalArray) => {
   return definitiveList;
 };
 
-// Empezamos a renderizarlo en el HTML. Hacemos un destructuring para facilitar las cosas y tener el código más limpio.
+// Rendering
 const renderPokemon = (renderArray) => {
   const pokeContainer = document.querySelector('.poke-container');
 
@@ -101,7 +101,7 @@ const renderPokemon = (renderArray) => {
   });
 };
 
-// Creamos un filtro que permita buscar los Pokémon por nombre, filtrando aquellos que no coincidan con el input que ponga el usuario.
+// Filter
 const filterSearch = () => {
   const filterInput = document.querySelector('#filter-pokemon');
 
@@ -112,17 +112,15 @@ const filterSearch = () => {
     eachPokemonContainer.forEach((eachContainer) => {
       const pokeName = eachContainer.querySelector('.poke-name');
 
-      if (pokeName.innerText.toLowerCase().indexOf(inputValue) > -1) {
-        eachContainer.style.display = '';
-      } else {
-        eachContainer.style.display = 'none';
-      }
+      pokeName.innerText.toLowerCase().indexOf(inputValue) > -1
+        ? (eachContainer.style.display = '')
+        : (eachContainer.style.display = 'none');
     });
   };
   filterInput.addEventListener('keyup', filterPokemon);
 };
 
-// Creamos un pequeño detalle que coloree una sombra en el nombre de los Pokémon dependiendo de su tipo.
+// Shadow
 const coloringEachPokemon = () => {
   const pokeType = document.querySelectorAll('.poke-type');
 
@@ -134,22 +132,19 @@ const coloringEachPokemon = () => {
   });
 };
 
-// Función principal para la lista de favoritos.
+// Favourite List
 const choosePokemonTeam = () => {
   const allHearts = document.querySelectorAll('.fa-heart');
   const pokemonTeamSection = document.querySelector('.pokemon-team');
   const favouriteArray = [];
 
-  // Función que maneja el evento cada vez que clickeemos en el corazón.
   const markAsFavourite = (ev) => {
     const pokeFav = ev.target.parentNode;
     const pokeName = pokeFav.querySelector('.poke-name').innerText;
 
-    // Cambia el color del corazón
     const pokeHeartFav = ev.target.classList;
-    const activeFav = pokeHeartFav.toggle('fa-heart-active'); // Pulsando en el elemento, activamos/desactivamos una clase cual interruptor.
+    const activeFav = pokeHeartFav.toggle('fa-heart-active');
 
-    // Ejecutamos las funciones con los argumentos correspondientes.
     pushPokemon(favouriteArray, pokeName, activeFav);
     splicePokemon(favouriteArray, pokeName, activeFav);
     showSection(favouriteArray, pokemonTeamSection, 'pokemon-team-active');
@@ -161,31 +156,14 @@ const choosePokemonTeam = () => {
   });
 };
 
-// La función init() inicializa todas las principales funciones del documento, para darle más prolijidad y una buena funcionalidad.
-
 const init = async () => {
-  // Se guardan los datos que devuelve la función getData en una variable llamada pokeData. Esta función tiene un await ya que queremos esperar a que cumpla todas las promesas antes de continuar ejecutando código (hay un fetch).
   const pokeData = await getData();
-
-  // Se guarda el array con los nombres de los 151 pokémon en la variable allNames.
   const allNames = mapEachPokemon(pokeData);
-
-  // A partir de una iteración por los 151 nombres, sacamos las urls alternativas que contienen más información de los Pokémon. Lo guardamos en la variable allMainData. Esta función tiene un await ya que queremos esperar a que cumpla todas las promesas antes de continuar ejecutando código (hay un fetch).
   const allMainData = await getMainData(allNames);
-
-  // Armamos nuestro propio array de datos y lo guardamos en fullData.
   const fullData = cleanPokeData(allMainData);
-
-  // Ejecutamos la función de rendering con los datos que tenemos.
   renderPokemon(fullData);
-
-  // Ejecutamos la función para aplicar el filtro de búsqueda.
   filterSearch();
-
-  // Ejecutamos la función para colorear la sombra de cada Pokémon según su tipo.
   coloringEachPokemon();
-
-  // Ejecutamos la función para elegir el equipo Pokémon (favoritos).
   choosePokemonTeam();
 };
 
